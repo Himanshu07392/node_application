@@ -30,35 +30,7 @@ const User = dbConnection.dbConnection.define("user", {
   cash: DataTypes.INTEGER
 })
 
-const User1 = dbConnection.dbConnection.define("user1", {
-  name: DataTypes.TEXT,
-  favoriteColor: {
-    type: DataTypes.TEXT,
-    defaultValue: 'green'
-  },
-  age: DataTypes.INTEGER,
-  cash: DataTypes.INTEGER
-})
-
-const User2 = dbConnection.dbConnection.define("user2", {
-  name: DataTypes.TEXT,
-  favoriteColor: {
-    type: DataTypes.TEXT,
-    defaultValue: 'green'
-  },
-  age: DataTypes.INTEGER,
-  cash: DataTypes.INTEGER
-})
-const User3 = dbConnection.dbConnection.define("user3", {
-  name: DataTypes.TEXT,
-  favoriteColor: {
-    type: DataTypes.TEXT,
-    defaultValue: 'green'
-  },
-  age: DataTypes.INTEGER,
-  cash: DataTypes.INTEGER
-})
-// create all the table associated with that.
+// ceate all the table associated with that.
 dbConnection.dbConnection.sync({ force: true }).then((data)=>console.log('table create success')).catch((error)=>{console.log('error in table')})
 
 // This is a get api
