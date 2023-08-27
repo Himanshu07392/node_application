@@ -4,7 +4,8 @@
   "description": "For understanding the initialization of node application",
   "main": "app.js",
   "scripts": {
-    "test": "nothing"
+    "test": "nothing",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

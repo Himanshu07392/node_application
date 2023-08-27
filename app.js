@@ -16,22 +16,10 @@ app.use(bodyParser.json()) // application middleware
 
 dbConnection.dbConnection.authenticate().then(()=>{// send dummy sql query, if the result of this query is positive It's mean db connection successfully otherwise not
     console.log('db Connection Success')
-}).catch((error)=> { console.log('error in Connection')})
-
-const { Sequelize, Model, DataTypes } = require("sequelize")
-
-const User = dbConnection.dbConnection.define("user", {
-  name: DataTypes.TEXT,
-  favoriteColor: {
-    type: DataTypes.TEXT,
-    defaultValue: 'green'
-  },
-  age: DataTypes.INTEGER,
-  cash: DataTypes.INTEGER
-})
+}).catch((error)=> { console.log('error in Connection', error) })
 
 // ceate all the table associated with that.
-dbConnection.dbConnection.sync({ force: true }).then((data)=>console.log('table create success')).catch((error)=>{console.log('error in table')})
+dbConnection.dbConnection.sync().then((data)=>console.log('table create success')).catch((error)=>{console.log('error in table')})
 
 // This is a get api
 app.get('/v1/getDetails', controllers.getData)
