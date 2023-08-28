@@ -1,4 +1,5 @@
-const {User} = require('./models/user')
+const {User} = require('../models/user')
+
 async function getData(req, res){
     console.log('req.params ::', req.params)
     console.log('req.query ::', req.query)

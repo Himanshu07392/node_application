@@ -1,6 +1,6 @@
 let express = require('express') // import the express library
 let bodyParser = require('body-parser')
-let controllers = require('./Controllers')
+let controllers = require('./Controllers/crud')
 let dbConnection = require('./DB_Connection')
 let app = express() // define the object of express
 
