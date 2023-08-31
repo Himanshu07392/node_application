@@ -1,10 +1,12 @@
 const {User} = require('../models/user')
+const {m_User} = require('../models/m_user')
 
 async function getData(req, res){
     console.log('req.params ::', req.params)
     console.log('req.query ::', req.query)
     console.log('req.body ::', req.body)
-    let data = await User.findAll()
+    // let data = await User.findAll()
+    let data = await m_User.find()
     // console.log('Hi Get Request is Trigged', req)
     res.status(201).send(data)
 }
@@ -16,15 +18,21 @@ async function createData(req, res){
     // }
 
     let name = req.body.name
-    let fc = req.body.favoriteColor
+    // let fc = req.body.favoriteColor
     let age = req.body.age
-    let cash = req.body.cash
+    let well = req.body.well
+    // let cash = req.body.cash
 
-    let data = await User.create({
+    // let data = await User.create({
+    //     name: name,
+    //     favoriteColor: fc,
+    //     age: age,
+    //     cash: cash
+    // })
+    let data = await m_User.create({
         name: name,
-        favoriteColor: fc,
         age: age,
-        cash: cash
+        well: well
     })
     console.log('req.query', req.query)
     console.log('Create API')
