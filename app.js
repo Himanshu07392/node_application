@@ -3,6 +3,7 @@ let bodyParser = require('body-parser')
 let controllers = require('./Controllers/crud')
 let dbConnection = require('./DB_Connection')
 let {conn} = require('./mongo_db_connection')
+let {upload, uploadFiles} = require('./Controllers/crud')
 let app = express() // define the object of express
 
 // listen function is used to activate and listening the request at a server at specific port.
@@ -41,6 +42,12 @@ app.put('/v1/update', controllers.updateData)
 
 // Update End Point, to update existing Information
 app.delete('/v1/delete', controllers.DeleteData)
+
+app.post('/v1/upload', upload, uploadFiles)
+
+// app.post('/v1/uploadFiles', upload, uploadFiles)
+
+// app.get('/v1/getFile/:file', getFiles)
 
 // 200 => Read the data from the server
 // 201 => Create the resource in the server // exact word is Modification of resource in the database, It may be due to post, update or delete

@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
+  ,
+  // unstructured: {
+  //   type: Object
+  // }
 })
 
 const m_User = mongoose.model("user_data", UserSchema, 'custom_user_data')

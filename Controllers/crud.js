@@ -1,12 +1,27 @@
-const {User} = require('../models/user')
 const {m_User} = require('../models/m_user')
+const multer = require('multer')
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function(req, file, cb) {
+            cb(null, './uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null , file.originalname)
+        }
+    })
+}).array('file')
 
 async function getData(req, res){
     console.log('req.params ::', req.params)
     console.log('req.query ::', req.query)
     console.log('req.body ::', req.body)
     // let data = await User.findAll()
-    let data = await m_User.find()
+    let data = await m_User.find().select({
+        _id:0
+    }).sort({
+        age: -1
+    })
+    // <key-name>: 1
     // console.log('Hi Get Request is Trigged', req)
     res.status(201).send(data)
 }
@@ -24,7 +39,7 @@ async function createData(req, res){
     // let cash = req.body.cash
 
     // let data = await User.create({
-    //     name: name,
+    //     name: name,\
     //     favoriteColor: fc,
     //     age: age,
     //     cash: cash
@@ -33,23 +48,47 @@ async function createData(req, res){
         name: name,
         age: age,
         well: well
+        // unstructured: req.body.unstructure ?? {}
     })
     console.log('req.query', req.query)
     console.log('Create API')
-    console.log('body data ::', req.body)
+    console.log('body dat ::', req.body)
+    res.status(201).send({data: data})
+}
+// nodemon file.js
+async function updateData(req, res){
+    console.log('update api')
+    console.log('update req body ::', req.body)
+    let name = req.query.name
+    let updatedName = req.query.updatedName
+    let age = req.query.age
+    let data = await m_User.updateOne(
+        {
+            name: name   // conditionjnjifdnjnwjen
+        },
+        {
+            $set: {
+                name: updatedName, // valued
+                age: age
+            }
+        }
+    ) 
     res.status(201).send(data)
 }
 
-function updateData(req, res){
-    console.log('update api')
-    console.log('update req body ::', req.body)
-    res.status(201).send('Update API is Hit')
-}
-
-function DeleteData(req, res){
+async function DeleteData(req, res){
     console.log('delete api')
     console.log('delete req body ::', req.body)
-    res.status(201).send('delete API is Hit')
+    let name = req.body.name
+    let result = await m_User.deleteMany({
+        'name': name
+    })
+    res.status(201).send(result)
 }
 
-module.exports = { getData, updateData, DeleteData, createData }
+function uploadFiles(req, res){
+    let files = req.files
+    res.status(200).send(files)
+}
+
+module.exports = { getData, updateData, DeleteData, createData, upload, uploadFiles}
