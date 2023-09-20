@@ -11,9 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "child_process": "^1.0.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "events": "^3.3.0",
     "express": "^4.11.1",
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^7.5.0",
     "multer": "^1.4.5-lts.1",

@@ -12,18 +12,24 @@ const upload = multer({
 }).array('file')
 
 async function getData(req, res){
-    console.log('req.params ::', req.params)
-    console.log('req.query ::', req.query)
-    console.log('req.body ::', req.body)
-    // let data = await User.findAll()
-    let data = await m_User.find().select({
-        _id:0
-    }).sort({
-        age: -1
+    console.log('cookies ::', req.cookies)
+    res.cookie('Test cookies', 'my cookies', {
+        httpOnly: true, // default is false
+        sameSite: 'lax'
     })
-    // <key-name>: 1
-    // console.log('Hi Get Request is Trigged', req)
-    res.status(201).send(data)
+    res.send('cookies sent success')
+    // console.log('req.params ::', req.params)
+    // console.log('req.query ::', req.query)
+    // console.log('req.body ::', req.body)
+    // // let data = await User.findAll()
+    // let data = await m_User.find().select({
+    //     _id:0
+    // }).sort({
+    //     age: -1
+    // })
+    // // <key-name>: 1
+    // // console.log('Hi Get Request is Trigged', req)
+    // res.status(201).send(data)
 }
 
 async function createData(req, res){

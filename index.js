@@ -1,22 +1,57 @@
-// Synchronous and Asynchronous
+// const { EventEmitter } = require('events')
 
-// Synchronous is exceuting the code in the sequence that It has been written.
-// Asynchronous is executing the code without the sequence and independent from each other.
+// const eventEmitter = new EventEmitter() // create instance of eventEmitter.
 
-// synchronous code
+// console.log('starting')
+// // inbuilt package = It is developed by node js
+// // fs, path, os, stream, EventEmitter
+// // functionName()
 
-console.log('Hello')
-console.log('World')
+// // addListener = It will register the custom event in the node js server using the event emitter Instance.
 
-// send response to the client or to the frontend.
+// // eventEmitter.addListener('myEvent', (name, lastName)=>{
+// //     console.log('Hello World jndsdnj')
+// //     console.log(`Hello ${name} ${lastName}`)
+// // })
 
-// Asynchronous code
+// // on = It will do same things as addListener.
 
-// setTimeout = Asynchronous function or This is a example of high order function also.
+// // eventEmitter.on('myEvent', (name, lastName)=>{
+// //     console.log(`Hello ${name} ${lastName}`)
+// // })
 
-// function helloWorld(){
-//     console.log('Hello World')
-// }
+// // once = It will also do same work expect It execute only one time.
+// eventEmitter.once('oneEvent', ()=>{
+//     console.log('once time events')
+// })
 
-// setTimeout(helloWorld, 2000)
-// console.log('After setTimeout.')
+// // emit = It will invoke the custom events.
+// // eventEmitter.emit('oneEvent', 'Himanshu', 'Agrawal')
+// // eventEmitter.emit('oneEvent', 'Abdul', 'Basha')
+// // eventEmitter.emit('oneEvent', 'Vedha', 'Mam')
+// eventEmitter.emit('oneEvent')
+// eventEmitter.emit('oneEvent')
+// // Event driven Architecture = Executing the code on the basis of event occured.
+
+// const http = require('http')  // core package of node js to create the server.
+
+// let server = http.createServer((req, res)=>{
+//     console.log('server is started.')
+//     // res.write(200)
+//     console.log('url ::', req.url)
+//     if(req.url == '/home')
+//         //home
+//         res.end('welcome in home')
+//     if(req.url == '/contact')
+//         res.end('welcome in contact')
+
+//     res.end('Hello')
+// })
+
+// // we have to linkup to the network so that we can accept the request.
+
+// server.listen(8000, '127.0.0.1', ()=>{
+//     console.log('server is listening at port 8000')
+// })
+
+// 1 know the basic of the language and its function

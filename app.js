@@ -4,6 +4,7 @@ let controllers = require('./Controllers/crud')
 let dbConnection = require('./DB_Connection')
 let {conn} = require('./mongo_db_connection')
 let {upload, uploadFiles} = require('./Controllers/crud')
+let cookieParser = require('cookie-parser')
 let app = express() // define the object of express
 
 // listen function is used to activate and listening the request at a server at specific port.
@@ -12,12 +13,14 @@ app.listen(4000, function callback(){
 })
 // const mongoose = require('mongoose')
 // connectDB()
+// req.file
 conn.then(()=>{console.log('Mongo db Connected Successfully.')}).catch((error)=>{console.log('error in connecting mongodb ::', error)})
 
 // Use to add the middleware, It parse the json data into the object, when it comes infront of all the endPoints,  This type of middleware is also called as application middleware.
 app.use(bodyParser.json()) // application middleware
 // app.use(endPoint, middleware) // route middleware
 // when a function pass as a argument in a another function then that function is called as callback function.
+app.use(cookieParser())
 
 dbConnection.dbConnection.authenticate().then(()=>{// send dummy sql query, if the result of this query is positive It's mean db connection successfully otherwise not
     console.log('db Connection Success')
